@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Groove Music Pass</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Lucide Icons CDN / SVG inline -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dark-theme">
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-logo">
+          <img src="../assets/icon_256.png" alt="Groove Logo">
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">Groove</span>
+          <span class="brand-subtitle">Music Pass</span>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <div class="nav-group-title">My Music</div>
+        <button class="nav-item active" data-view="library-songs">
+          <i class="fa-solid fa-music"></i>
+          <span>Songs</span>
+        </button>
+        <button class="nav-item" data-view="library-artists">
+          <i class="fa-solid fa-user"></i>
+          <span>Artists</span>
+        </button>
+        <button class="nav-item" data-view="library-albums">
+          <i class="fa-solid fa-record-vinyl"></i>
+          <span>Albums</span>
+        </button>
+
+        <div class="nav-group-title">Playlists</div>
+        <button class="nav-item" data-view="playlists">
+          <i class="fa-solid fa-list-ul"></i>
+          <span>All Playlists</span>
+        </button>
+        <div class="user-playlists-list" id="user-playlists-nav">
+          <!-- Dynamically populated -->
+        </div>
+        <button class="btn-create-playlist" id="btn-new-playlist">
+          <i class="fa-solid fa-plus"></i>
+          <span>New Playlist</span>
+        </button>
+
+        <div class="nav-group-title">Groove Pass & Sunset</div>
+        <button class="nav-item nav-highlight" data-view="spotify-migration">
+          <i class="fa-brands fa-spotify"></i>
+          <span>Spotify Migration</span>
+        </button>
+        <button class="nav-item" data-view="groove-history">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>Groove Pass Info</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="theme-toggle" id="theme-toggle-btn" title="Toggle Light/Dark Theme">
+          <i class="fa-solid fa-moon"></i>
+          <span id="theme-status-text">Dark Mode</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Top Search & Bar -->
+      <header class="top-bar">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="search-input" placeholder="Search my music...">
+        </div>
+        <div class="top-actions">
+          <button class="btn-primary" id="btn-add-music">
+            <i class="fa-solid fa-folder-plus"></i> Import Local Songs
+          </button>
+          <div class="pass-badge" title="Groove Music Pass Edition">
+            <i class="fa-solid fa-crown"></i> Pass Active
+          </div>
+        </div>
+      </header>
+
+      <!-- View Containers -->
+      <div class="content-view" id="view-library-songs">
+        <div class="view-header">
+          <h1>Songs</h1>
+          <div class="view-header-stats" id="songs-count-stats">0 songs</div>
+        </div>
+
+        <div class="song-table-container">
+          <table class="song-table">
+            <thead>
+              <tr>
+                <th style="width: 40px;">#</th>
+                <th style="width: 50px;"></th>
+                <th>Title</th>
+                <th>Artist</th>
+                <th>Album</th>
+                <th style="width: 80px;"><i class="fa-regular fa-clock"></i></th>
+                <th style="width: 100px;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="songs-table-body">
+              <!-- Dynamically built -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Playlists View -->
+      <div class="content-view hidden" id="view-playlists">
+        <div class="view-header">
+          <h1>Playlists</h1>
+        </div>
+        <div class="playlists-grid" id="playlists-grid">
+          <!-- Dynamically built -->
+        </div>
+      </div>
+
+      <!-- Playlist Detail View -->
+      <div class="content-view hidden" id="view-playlist-detail">
+        <div class="playlist-detail-header">
+          <div class="playlist-cover" id="detail-playlist-cover">
+            <i class="fa-solid fa-music"></i>
+          </div>
+          <div class="playlist-info">
+            <span class="playlist-tag">PLAYLIST</span>
+            <h1 id="detail-playlist-title">Playlist Title</h1>
+            <p id="detail-playlist-meta">0 songs • 0 minutes</p>
+            <div class="playlist-action-btns">
+              <button class="btn-primary" id="btn-play-playlist">
+                <i class="fa-solid fa-play"></i> Play All
+              </button>
+              <button class="btn-secondary" id="btn-export-to-spotify">
+                <i class="fa-brands fa-spotify"></i> Migrate to Spotify
+              </button>
+              <button class="btn-danger" id="btn-delete-playlist">
+                <i class="fa-solid fa-trash"></i> Delete
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="song-table-container">
+          <table class="song-table">
+            <thead>
+              <tr>
+                <th style="width: 40px;">#</th>
+                <th style="width: 50px;"></th>
+                <th>Title</th>
+                <th>Artist</th>
+                <th>Album</th>
+                <th style="width: 80px;"><i class="fa-regular fa-clock"></i></th>
+                <th style="width: 60px;"></th>
+              </tr>
+            </thead>
+            <tbody id="playlist-songs-table-body">
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Spotify Migration View -->
+      <div class="content-view hidden" id="view-spotify-migration">
+        <div class="migration-hero">
+          <div class="migration-badge"><i class="fa-brands fa-spotify"></i> Groove to Spotify Transfer</div>
+          <h1>Move your Groove Playlists to Spotify</h1>
+          <p class="migration-subtitle">
+            Microsoft’s Groove Music Pass streaming service ended on December 31, 2017.
+            Use this official tool to export your Groove playlists directly into Spotify or generate Spotify-compatible playlist import files!
+          </p>
+
+          <div class="migration-steps">
+            <div class="step-card">
+              <div class="step-num">1</div>
+              <h3>Select Playlist</h3>
+              <p>Choose any playlist from your Groove Pass library or local music collections.</p>
+            </div>
+            <div class="step-card">
+              <div class="step-num">2</div>
+              <h3>Export / Generate Link</h3>
+              <p>Generate a direct Spotify Search URL list, CSV export, or Spotify Web API authorization package.</p>
+            </div>
+            <div class="step-card">
+              <div class="step-num">3</div>
+              <h3>Enjoy on Spotify</h3>
+              <p>Listen seamlessly on Spotify with all your favorite songs, artists, and saved tracks preserved.</p>
+            </div>
+          </div>
+
+          <div class="migration-action-box">
+            <h2>Select a Playlist to Export</h2>
+            <div class="playlist-select-group">
+              <select id="migration-playlist-select" class="form-select">
+                <!-- Dynamically populated -->
+              </select>
+              <button class="btn-primary btn-lg" id="btn-start-migration">
+                <i class="fa-solid fa-file-export"></i> Export Selected Playlist
+              </button>
+            </div>
+
+            <div class="migration-results hidden" id="migration-results">
+              <h3>Export Summary for <span id="migrated-playlist-name"></span></h3>
+              <p id="migrated-playlist-stats"></p>
+
+              <div class="export-options-grid">
+                <div class="export-card">
+                  <i class="fa-solid fa-file-csv"></i>
+                  <h4>Export CSV File</h4>
+                  <p>Standard CSV with Track Title, Artist, and Album columns compatible with Soundiiz / TuneMyMusic / Spotify importers.</p>
+                  <button class="btn-secondary" id="btn-download-csv"><i class="fa-solid fa-download"></i> Save CSV</button>
+                </div>
+
+                <div class="export-card">
+                  <i class="fa-solid fa-link"></i>
+                  <h4>Copy Spotify Search Links</h4>
+                  <p>Generates instant Spotify search URLs for every track in your playlist.</p>
+                  <button class="btn-secondary" id="btn-copy-spotify-links"><i class="fa-solid fa-copy"></i> Copy Links</button>
+                </div>
+
+                <div class="export-card">
+                  <i class="fa-brands fa-spotify"></i>
+                  <h4>Open Spotify Web Player</h4>
+                  <p>Launch Spotify to easily search and add your transferred music.</p>
+                  <button class="btn-secondary" id="btn-open-spotify-web"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Spotify</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Groove Pass History & Info View -->
+      <div class="content-view hidden" id="view-groove-history">
+        <div class="info-container">
+          <div class="info-header">
+            <img src="../assets/icon_512.png" class="info-logo" alt="Groove Logo">
+            <div>
+              <h1>About Groove Music Pass</h1>
+              <p class="text-muted">Microsoft Corporation • Windows Music Streaming Service</p>
+            </div>
+          </div>
+
+          <div class="info-body">
+            <div class="info-card">
+              <h3><i class="fa-solid fa-timeline"></i> The History of Groove Music Pass</h3>
+              <p>
+                <strong>Groove Music</strong> (formerly <em>Xbox Music</em> and <em>Zune Music</em>) was Microsoft's digital music streaming and download service integrated directly into Windows 10, Xbox One, Windows Phone, iOS, and Android.
+              </p>
+              <p>
+                With a <strong>Groove Music Pass</strong>, subscribers could stream tens of millions of songs, download offline tracks, create radio stations based on artists, and sync their personal music collection via OneDrive.
+              </p>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fa-solid fa-bullhorn"></i> The 2017 Sunset Announcement</h3>
+              <p>
+                On October 2, 2017, Microsoft announced that the Groove Music Pass streaming service would be discontinued on <strong>December 31, 2017</strong>.
+              </p>
+              <p>
+                Microsoft partnered closely with <strong>Spotify</strong> to allow Groove Music subscribers to seamlessly move their music collection, custom playlists, and favorite albums to Spotify with just a few clicks inside the Windows 10 app.
+              </p>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fa-solid fa-desktop"></i> Groove Desktop Application Features</h3>
+              <ul>
+                <li><strong>Native Windows Player:</strong> High-performance local audio playback for MP3, FLAC, WAV, M4A, and AAC files.</li>
+                <li><strong>Curated Groove Playlists:</strong> Built-in nostalgic playlists (Top Hits 2017, Rock Classics, Chill Vibe, Synthwave Essentials).</li>
+                <li><strong>Spotify Migration Tool:</strong> Full support for exporting Groove playlists to CSV or Spotify search links.</li>
+                <li><strong>Fluent Dark & Light Design:</strong> Modern Windows UI matching Microsoft's original Groove design aesthetics.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Bottom Audio Player Bar -->
+    <footer class="player-bar">
+      <div class="now-playing">
+        <div class="now-playing-art" id="player-album-art">
+          <i class="fa-solid fa-disc-doc"></i>
+        </div>
+        <div class="now-playing-details">
+          <div class="now-playing-title" id="player-title">No Track Playing</div>
+          <div class="now-playing-artist" id="player-artist">Select a track to start playing</div>
+        </div>
+        <button class="btn-icon" id="btn-favorite-current" title="Add to Favorites">
+          <i class="fa-regular fa-heart"></i>
+        </button>
+      </div>
+
+      <div class="player-controls-center">
+        <div class="control-buttons">
+          <button class="btn-icon" id="btn-shuffle" title="Shuffle"><i class="fa-solid fa-shuffle"></i></button>
+          <button class="btn-icon" id="btn-prev" title="Previous"><i class="fa-solid fa-backward-step"></i></button>
+          <button class="btn-play-pause" id="btn-play-pause" title="Play/Pause"><i class="fa-solid fa-play"></i></button>
+          <button class="btn-icon" id="btn-next" title="Next"><i class="fa-solid fa-forward-step"></i></button>
+          <button class="btn-icon" id="btn-repeat" title="Repeat"><i class="fa-solid fa-repeat"></i></button>
+        </div>
+        <div class="progress-bar-container">
+          <span class="time-stamp" id="time-current">0:00</span>
+          <input type="range" class="seek-slider" id="seek-slider" min="0" max="100" value="0">
+          <span class="time-stamp" id="time-total">0:00</span>
+        </div>
+      </div>
+
+      <div class="player-actions-right">
+        <div class="volume-container">
+          <button class="btn-icon" id="btn-mute" title="Mute/Unmute"><i class="fa-solid fa-volume-high"></i></button>
+          <input type="range" class="volume-slider" id="volume-slider" min="0" max="100" value="80">
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <audio id="audio-element"></audio>
+
+  <!-- Modals -->
+  <div class="modal-overlay hidden" id="modal-new-playlist">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Create New Playlist</h3>
+        <button class="btn-close" id="btn-close-modal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <label for="new-playlist-name-input">Playlist Name</label>
+        <input type="text" id="new-playlist-name-input" placeholder="e.g., My Groove Favorites 2017">
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" id="btn-cancel-modal">Cancel</button>
+        <button class="btn-primary" id="btn-confirm-create-playlist">Create Playlist</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
