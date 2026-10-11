@@ -15,15 +15,32 @@ if (!fs.existsSync(unpackedDir)) {
 }
 console.log(`Unpacked build successful at: ${unpackedDir}`);
 
+// Locate makensis dynamically or fallback to system path
+let makensisExecutable = 'makensis';
+let nsisDir = '';
+
+const potentialNsisDirs = [
+  path.expandHome ? path.expandHome('~/.cache/electron-builder/nsis-3.0.4.1/nsis-3.0.4.1-1mx3n') : null,
+  path.join(process.env.HOME || '/root', '.cache/electron-builder/nsis-3.0.4.1/nsis-3.0.4.1-1mx3n')
+].filter(Boolean);
+
+for (const p of potentialNsisDirs) {
+  const binaryPath = path.join(p, 'linux/makensis');
+  if (fs.existsSync(binaryPath)) {
+    makensisExecutable = binaryPath;
+    nsisDir = p;
+    break;
+  }
+}
+
 // Step 2: Build NSIS EXE Installer using makensis
 console.log('Building NSIS EXE Installer...');
-const makensisExecutable = '/home/jules/.cache/electron-builder/nsis-3.0.4.1/nsis-3.0.4.1-1mx3n/linux/makensis';
-const nsisDir = '/home/jules/.cache/electron-builder/nsis-3.0.4.1/nsis-3.0.4.1-1mx3n';
 const nsiScriptPath = path.resolve(__dirname, 'installer.nsi');
 const exeOutputPath = path.resolve(__dirname, '../dist/GrooveMusicPass_Setup_1.0.0.exe');
+const iconPath = path.resolve(__dirname, '../assets/icon.ico');
 
 const nsiScriptContent = `
-!addincludedir "${nsisDir}/Include"
+${nsisDir ? `!addincludedir "${nsisDir}/Include"` : ''}
 
 !define PRODUCT_NAME "Groove Music Pass"
 !define PRODUCT_VERSION "1.0.0"
@@ -36,8 +53,8 @@ SetCompressor /SOLID lzma
 Name "Groove Music Pass 1.0.0"
 OutFile "${exeOutputPath}"
 InstallDir "$PROGRAMFILES64\\Groove Music Pass"
-Icon "${path.resolve(__dirname, '../build/icon.ico')}"
-UninstallIcon "${path.resolve(__dirname, '../build/icon.ico')}"
+Icon "${iconPath}"
+UninstallIcon "${iconPath}"
 ShowInstDetails show
 ShowUnInstDetails show
 
@@ -47,8 +64,8 @@ Section "MainSection" SEC01
   File /r "${unpackedDir}\\*"
 
   CreateDirectory "$SMPROGRAMS\\Groove Music Pass"
-  CreateShortcut "$SMPROGRAMS\\Groove Music Pass\\Groove Music Pass.lnk" "$INSTDIR\\Groove Music Pass.exe" "" "${path.resolve(__dirname, '../build/icon.ico')}"
-  CreateShortcut "$DESKTOP\\Groove Music Pass.lnk" "$INSTDIR\\Groove Music Pass.exe" "" "${path.resolve(__dirname, '../build/icon.ico')}"
+  CreateShortcut "$SMPROGRAMS\\Groove Music Pass\\Groove Music Pass.lnk" "$INSTDIR\\Groove Music Pass.exe" "" "${iconPath}"
+  CreateShortcut "$DESKTOP\\Groove Music Pass.lnk" "$INSTDIR\\Groove Music Pass.exe" "" "${iconPath}"
 SectionEnd
 
 Section -Post
@@ -78,9 +95,15 @@ SectionEnd
 `;
 
 fs.writeFileSync(nsiScriptPath, nsiScriptContent, 'utf-8');
+
+const nsisEnv = { ...process.env };
+if (nsisDir) {
+  nsisEnv.NSISDIR = nsisDir;
+}
+
 execSync(`${makensisExecutable} -NOCONFIG "${nsiScriptPath}"`, {
   stdio: 'inherit',
-  env: { ...process.env, NSISDIR: nsisDir }
+  env: nsisEnv
 });
 console.log(`EXE Installer created successfully at: ${exeOutputPath}`);
 
@@ -139,7 +162,7 @@ const wxsContent = `<?xml version="1.0" encoding="utf-8"?>
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Comments="Groove Music Pass Windows Installer" />
     <Media Id="1" Cabinet="groove.cab" EmbedCab="yes" />
 
-    <Icon Id="AppIcon.ico" SourceFile="${path.resolve(__dirname, '../build/icon.ico')}" />
+    <Icon Id="AppIcon.ico" SourceFile="${iconPath}" />
     <Property Id="ARPPRODUCTICON" Value="AppIcon.ico" />
 
     <Directory Id="TARGETDIR" Name="SourceDir">

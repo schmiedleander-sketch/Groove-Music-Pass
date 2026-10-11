@@ -12,8 +12,8 @@ SetCompressor /SOLID lzma
 Name "Groove Music Pass 1.0.0"
 OutFile "/app/dist/GrooveMusicPass_Setup_1.0.0.exe"
 InstallDir "$PROGRAMFILES64\Groove Music Pass"
-Icon "/app/build/icon.ico"
-UninstallIcon "/app/build/icon.ico"
+Icon "/app/assets/icon.ico"
+UninstallIcon "/app/assets/icon.ico"
 ShowInstDetails show
 ShowUnInstDetails show
 
@@ -23,8 +23,8 @@ Section "MainSection" SEC01
   File /r "/app/dist/win-unpacked\*"
 
   CreateDirectory "$SMPROGRAMS\Groove Music Pass"
-  CreateShortcut "$SMPROGRAMS\Groove Music Pass\Groove Music Pass.lnk" "$INSTDIR\Groove Music Pass.exe" "" "/app/build/icon.ico"
-  CreateShortcut "$DESKTOP\Groove Music Pass.lnk" "$INSTDIR\Groove Music Pass.exe" "" "/app/build/icon.ico"
+  CreateShortcut "$SMPROGRAMS\Groove Music Pass\Groove Music Pass.lnk" "$INSTDIR\Groove Music Pass.exe" "" "/app/assets/icon.ico"
+  CreateShortcut "$DESKTOP\Groove Music Pass.lnk" "$INSTDIR\Groove Music Pass.exe" "" "/app/assets/icon.ico"
 SectionEnd
 
 Section -Post
