@@ -1,0 +1,8 @@
+node_modules/
+dist/
+build/
+*.exe
+*.msi
+*.7z
+.cache/
+EOF

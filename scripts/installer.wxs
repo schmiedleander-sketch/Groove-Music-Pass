@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*" Name="Groove Music Pass" UpgradeCode="de5cc7db-9241-569d-88b2-ee2cde431862" Language="1033" Codepage="1252" Version="1.0.0" Manufacturer="Microsoft Corporation">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Comments="Groove Music Pass Windows Installer" />
+    <Media Id="1" Cabinet="groove.cab" EmbedCab="yes" />
+
+    <Icon Id="AppIcon.ico" SourceFile="/app/build/icon.ico" />
+    <Property Id="ARPPRODUCTICON" Value="AppIcon.ico" />
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFiles64Folder">
+        <Directory Id="INSTALLDIR" Name="Groove Music Pass">
+
+        <Component Id="Comp_x19pc47" Guid="*">
+          <File Id="File_z4r0aox" Source="/app/dist/win-unpacked/Groove Music Pass.exe" KeyPath="yes">
+
+          <Shortcut Id="StartMenuShortcut" Name="Groove Music Pass" Directory="ProgramMenuFolder" WorkingDirectory="INSTALLDIR" Icon="AppIcon.ico" Advertise="yes" />
+          <Shortcut Id="DesktopShortcut" Name="Groove Music Pass" Directory="DesktopFolder" WorkingDirectory="INSTALLDIR" Icon="AppIcon.ico" Advertise="yes" />
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_jonronq" Guid="*">
+          <File Id="File_gjiskku" Source="/app/dist/win-unpacked/LICENSE.electron.txt" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_72qon8e" Guid="*">
+          <File Id="File_trx1hl6" Source="/app/dist/win-unpacked/LICENSES.chromium.html" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_cflzppo" Guid="*">
+          <File Id="File_b1igzr8" Source="/app/dist/win-unpacked/chrome_100_percent.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_50ajdlv" Guid="*">
+          <File Id="File_aezisum" Source="/app/dist/win-unpacked/chrome_200_percent.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_gn2oqkk" Guid="*">
+          <File Id="File_2gkhcw9" Source="/app/dist/win-unpacked/d3dcompiler_47.dll" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_8xphoqf" Guid="*">
+          <File Id="File_eetcrnm" Source="/app/dist/win-unpacked/ffmpeg.dll" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_6dxv4r6" Guid="*">
+          <File Id="File_1dtyi4t" Source="/app/dist/win-unpacked/icudtl.dat" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_pfa5mbi" Guid="*">
+          <File Id="File_7zs8hg6" Source="/app/dist/win-unpacked/libEGL.dll" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_g2kyajl" Guid="*">
+          <File Id="File_34vrq2i" Source="/app/dist/win-unpacked/libGLESv2.dll" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_l8lnt8h" Guid="*">
+          <File Id="File_wo8d4tw" Source="/app/dist/win-unpacked/resources.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_mjzh0ee" Guid="*">
+          <File Id="File_qkkfe7g" Source="/app/dist/win-unpacked/snapshot_blob.bin" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_b6s8z17" Guid="*">
+          <File Id="File_vq0dwnp" Source="/app/dist/win-unpacked/v8_context_snapshot.bin" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_l47kgx7" Guid="*">
+          <File Id="File_wj1x7w6" Source="/app/dist/win-unpacked/vk_swiftshader.dll" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_yy9t4nb" Guid="*">
+          <File Id="File_25ez25b" Source="/app/dist/win-unpacked/vk_swiftshader_icd.json" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_u7g98hb" Guid="*">
+          <File Id="File_ar8cz3m" Source="/app/dist/win-unpacked/vulkan-1.dll" KeyPath="yes">
+
+          </File>
+        </Component>
+
+          <Directory Id="Dir_a74h7c3" Name="locales">
+
+        <Component Id="Comp_pdz6tl9" Guid="*">
+          <File Id="File_wxpsb0w" Source="/app/dist/win-unpacked/locales/af.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_407tad3" Guid="*">
+          <File Id="File_r1oaz0o" Source="/app/dist/win-unpacked/locales/am.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_0etj78g" Guid="*">
+          <File Id="File_okelg7a" Source="/app/dist/win-unpacked/locales/ar.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_u4w54y5" Guid="*">
+          <File Id="File_as4spyn" Source="/app/dist/win-unpacked/locales/bg.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_773zz9r" Guid="*">
+          <File Id="File_rh8i9j3" Source="/app/dist/win-unpacked/locales/bn.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_unwpecw" Guid="*">
+          <File Id="File_0qhb3kw" Source="/app/dist/win-unpacked/locales/ca.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_6rm0yre" Guid="*">
+          <File Id="File_ox61wh3" Source="/app/dist/win-unpacked/locales/cs.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_63j2ibe" Guid="*">
+          <File Id="File_24wtj9c" Source="/app/dist/win-unpacked/locales/da.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_3zbvw8x" Guid="*">
+          <File Id="File_uismc5u" Source="/app/dist/win-unpacked/locales/de.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_t3rd9na" Guid="*">
+          <File Id="File_frehbv7" Source="/app/dist/win-unpacked/locales/el.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_xxg6fst" Guid="*">
+          <File Id="File_6y8hosz" Source="/app/dist/win-unpacked/locales/en-GB.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_k3359uy" Guid="*">
+          <File Id="File_wzgarlo" Source="/app/dist/win-unpacked/locales/en-US.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_oeip5vs" Guid="*">
+          <File Id="File_62ed3ob" Source="/app/dist/win-unpacked/locales/es-419.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_z32wxxl" Guid="*">
+          <File Id="File_3qrjb7z" Source="/app/dist/win-unpacked/locales/es.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_mkr31mv" Guid="*">
+          <File Id="File_9s376s2" Source="/app/dist/win-unpacked/locales/et.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_z23u2ja" Guid="*">
+          <File Id="File_a768fy5" Source="/app/dist/win-unpacked/locales/fa.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_rndx3ty" Guid="*">
+          <File Id="File_ne4hrxx" Source="/app/dist/win-unpacked/locales/fi.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_nd7kv0p" Guid="*">
+          <File Id="File_bexgia1" Source="/app/dist/win-unpacked/locales/fil.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_jnvhhex" Guid="*">
+          <File Id="File_zkeof19" Source="/app/dist/win-unpacked/locales/fr.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_9fbjznk" Guid="*">
+          <File Id="File_6wy4jrk" Source="/app/dist/win-unpacked/locales/gu.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_fs730g6" Guid="*">
+          <File Id="File_e1sijlp" Source="/app/dist/win-unpacked/locales/he.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_reh4g5m" Guid="*">
+          <File Id="File_r3jkqts" Source="/app/dist/win-unpacked/locales/hi.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_zrfcfc7" Guid="*">
+          <File Id="File_8drnwit" Source="/app/dist/win-unpacked/locales/hr.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_9vt9j3t" Guid="*">
+          <File Id="File_m2immzc" Source="/app/dist/win-unpacked/locales/hu.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_81cobc3" Guid="*">
+          <File Id="File_p5feyza" Source="/app/dist/win-unpacked/locales/id.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_enu35jk" Guid="*">
+          <File Id="File_bcs0ozm" Source="/app/dist/win-unpacked/locales/it.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_4zrpomh" Guid="*">
+          <File Id="File_r16j4d6" Source="/app/dist/win-unpacked/locales/ja.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_sr6scee" Guid="*">
+          <File Id="File_1ctf520" Source="/app/dist/win-unpacked/locales/kn.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_3zaqd1u" Guid="*">
+          <File Id="File_onftvnb" Source="/app/dist/win-unpacked/locales/ko.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_lrqix10" Guid="*">
+          <File Id="File_26u2s7a" Source="/app/dist/win-unpacked/locales/lt.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_twn8x5v" Guid="*">
+          <File Id="File_j4ghr4d" Source="/app/dist/win-unpacked/locales/lv.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_93udz7n" Guid="*">
+          <File Id="File_dhryvtd" Source="/app/dist/win-unpacked/locales/ml.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_h8xrxhy" Guid="*">
+          <File Id="File_agm0kjb" Source="/app/dist/win-unpacked/locales/mr.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_01d89ne" Guid="*">
+          <File Id="File_4u8ewag" Source="/app/dist/win-unpacked/locales/ms.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_0sh1tf2" Guid="*">
+          <File Id="File_zt29tyx" Source="/app/dist/win-unpacked/locales/nb.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_g204aff" Guid="*">
+          <File Id="File_fuwt0yg" Source="/app/dist/win-unpacked/locales/nl.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_9ccjm0f" Guid="*">
+          <File Id="File_zu5kgar" Source="/app/dist/win-unpacked/locales/pl.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_dfozye2" Guid="*">
+          <File Id="File_qn3zylw" Source="/app/dist/win-unpacked/locales/pt-BR.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_sjlivep" Guid="*">
+          <File Id="File_keipyja" Source="/app/dist/win-unpacked/locales/pt-PT.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_jsdk00i" Guid="*">
+          <File Id="File_82z3sxk" Source="/app/dist/win-unpacked/locales/ro.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_ti0m9nf" Guid="*">
+          <File Id="File_73zwi5j" Source="/app/dist/win-unpacked/locales/ru.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_8hx9ii5" Guid="*">
+          <File Id="File_9k5wllg" Source="/app/dist/win-unpacked/locales/sk.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_3mj90ye" Guid="*">
+          <File Id="File_8i636t5" Source="/app/dist/win-unpacked/locales/sl.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_gvqe2e3" Guid="*">
+          <File Id="File_r65o6g8" Source="/app/dist/win-unpacked/locales/sr.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_kbk2fm5" Guid="*">
+          <File Id="File_kmuxaik" Source="/app/dist/win-unpacked/locales/sv.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_bvumajh" Guid="*">
+          <File Id="File_owwz6r2" Source="/app/dist/win-unpacked/locales/sw.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_ke0vggr" Guid="*">
+          <File Id="File_bvzeqfg" Source="/app/dist/win-unpacked/locales/ta.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_08nbygg" Guid="*">
+          <File Id="File_0q7vvji" Source="/app/dist/win-unpacked/locales/te.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_3cge1xo" Guid="*">
+          <File Id="File_xw7nesv" Source="/app/dist/win-unpacked/locales/th.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_jbnzzz5" Guid="*">
+          <File Id="File_032vojz" Source="/app/dist/win-unpacked/locales/tr.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_6mo5hew" Guid="*">
+          <File Id="File_nq5xds0" Source="/app/dist/win-unpacked/locales/uk.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_co42p5g" Guid="*">
+          <File Id="File_ln1hkjk" Source="/app/dist/win-unpacked/locales/ur.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_bheayje" Guid="*">
+          <File Id="File_eif6d7w" Source="/app/dist/win-unpacked/locales/vi.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_oqruixc" Guid="*">
+          <File Id="File_pp8hqs2" Source="/app/dist/win-unpacked/locales/zh-CN.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+        <Component Id="Comp_6f5dhn5" Guid="*">
+          <File Id="File_p9z7t5t" Source="/app/dist/win-unpacked/locales/zh-TW.pak" KeyPath="yes">
+
+          </File>
+        </Component>
+
+
+</Directory>
+<Directory Id="Dir_mxr65wg" Name="resources">
+
+        <Component Id="Comp_adkcpgl" Guid="*">
+          <File Id="File_9xszn3v" Source="/app/dist/win-unpacked/resources/app.asar" KeyPath="yes">
+
+          </File>
+        </Component>
+
+
+</Directory>
+
+        </Directory>
+      </Directory>
+      <Directory Id="ProgramMenuFolder" />
+      <Directory Id="DesktopFolder" />
+    </Directory>
+
+    <Feature Id="MainFeature" Level="1">
+      <ComponentRef Id="Comp_x19pc47" />
+<ComponentRef Id="Comp_jonronq" />
+<ComponentRef Id="Comp_72qon8e" />
+<ComponentRef Id="Comp_cflzppo" />
+<ComponentRef Id="Comp_50ajdlv" />
+<ComponentRef Id="Comp_gn2oqkk" />
+<ComponentRef Id="Comp_8xphoqf" />
+<ComponentRef Id="Comp_6dxv4r6" />
+<ComponentRef Id="Comp_pfa5mbi" />
+<ComponentRef Id="Comp_g2kyajl" />
+<ComponentRef Id="Comp_pdz6tl9" />
+<ComponentRef Id="Comp_407tad3" />
+<ComponentRef Id="Comp_0etj78g" />
+<ComponentRef Id="Comp_u4w54y5" />
+<ComponentRef Id="Comp_773zz9r" />
+<ComponentRef Id="Comp_unwpecw" />
+<ComponentRef Id="Comp_6rm0yre" />
+<ComponentRef Id="Comp_63j2ibe" />
+<ComponentRef Id="Comp_3zbvw8x" />
+<ComponentRef Id="Comp_t3rd9na" />
+<ComponentRef Id="Comp_xxg6fst" />
+<ComponentRef Id="Comp_k3359uy" />
+<ComponentRef Id="Comp_oeip5vs" />
+<ComponentRef Id="Comp_z32wxxl" />
+<ComponentRef Id="Comp_mkr31mv" />
+<ComponentRef Id="Comp_z23u2ja" />
+<ComponentRef Id="Comp_rndx3ty" />
+<ComponentRef Id="Comp_nd7kv0p" />
+<ComponentRef Id="Comp_jnvhhex" />
+<ComponentRef Id="Comp_9fbjznk" />
+<ComponentRef Id="Comp_fs730g6" />
+<ComponentRef Id="Comp_reh4g5m" />
+<ComponentRef Id="Comp_zrfcfc7" />
+<ComponentRef Id="Comp_9vt9j3t" />
+<ComponentRef Id="Comp_81cobc3" />
+<ComponentRef Id="Comp_enu35jk" />
+<ComponentRef Id="Comp_4zrpomh" />
+<ComponentRef Id="Comp_sr6scee" />
+<ComponentRef Id="Comp_3zaqd1u" />
+<ComponentRef Id="Comp_lrqix10" />
+<ComponentRef Id="Comp_twn8x5v" />
+<ComponentRef Id="Comp_93udz7n" />
+<ComponentRef Id="Comp_h8xrxhy" />
+<ComponentRef Id="Comp_01d89ne" />
+<ComponentRef Id="Comp_0sh1tf2" />
+<ComponentRef Id="Comp_g204aff" />
+<ComponentRef Id="Comp_9ccjm0f" />
+<ComponentRef Id="Comp_dfozye2" />
+<ComponentRef Id="Comp_sjlivep" />
+<ComponentRef Id="Comp_jsdk00i" />
+<ComponentRef Id="Comp_ti0m9nf" />
+<ComponentRef Id="Comp_8hx9ii5" />
+<ComponentRef Id="Comp_3mj90ye" />
+<ComponentRef Id="Comp_gvqe2e3" />
+<ComponentRef Id="Comp_kbk2fm5" />
+<ComponentRef Id="Comp_bvumajh" />
+<ComponentRef Id="Comp_ke0vggr" />
+<ComponentRef Id="Comp_08nbygg" />
+<ComponentRef Id="Comp_3cge1xo" />
+<ComponentRef Id="Comp_jbnzzz5" />
+<ComponentRef Id="Comp_6mo5hew" />
+<ComponentRef Id="Comp_co42p5g" />
+<ComponentRef Id="Comp_bheayje" />
+<ComponentRef Id="Comp_oqruixc" />
+<ComponentRef Id="Comp_6f5dhn5" />
+<ComponentRef Id="Comp_adkcpgl" />
+<ComponentRef Id="Comp_l8lnt8h" />
+<ComponentRef Id="Comp_mjzh0ee" />
+<ComponentRef Id="Comp_b6s8z17" />
+<ComponentRef Id="Comp_l47kgx7" />
+<ComponentRef Id="Comp_yy9t4nb" />
+<ComponentRef Id="Comp_u7g98hb" />
+    </Feature>
+  </Product>
+</Wix>
